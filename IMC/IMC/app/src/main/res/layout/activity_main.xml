@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/labelIMC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -21,14 +21,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/labelAltura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Altura" />
+            android:text="Altura(m)" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/edAltura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,14 +43,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/labelPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Peso" />
+            android:text="Peso(Kg)" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/edPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,10 +60,20 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
+        android:id="@+id/BotaoIMC"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Calcular IMC" />
+        android:onClick="calcularIMC"
+        android:text="Calcular IMC"
+        android:textColorHighlight="#AA9C9C"
+        android:textColorLink="#C1A2A2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/perfil"
+        tools:srcCompat="@drawable/perfil" />
 
 </LinearLayout>
