@@ -1,4 +1,4 @@
-package com.example.imc;
+package com.example.imcs;
 
 import org.junit.Test;
 
