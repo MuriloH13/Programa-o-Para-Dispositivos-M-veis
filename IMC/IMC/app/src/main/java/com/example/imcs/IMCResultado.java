@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class IMCResultado extends AppCompatActivity {
 
-    TextView tvResultado;
+    TextView tvResultado, tvPeso, tvAltura, tvNome;
 
     ImageView imageViewResultado;
 
@@ -20,34 +21,53 @@ public class IMCResultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imcresultado);
 
-        tvResultado=findViewById(R.id.tvResultadoIMC);// associei a variável local ao view na tela
+        imageViewResultado = findViewById(R.id.ImageViewResultado);
+        tvAltura = findViewById(R.id.labelRAltura);
+        tvPeso = findViewById(R.id.labelRPeso);
+        tvNome = findViewById(R.id.labelRNome);
+        tvResultado=findViewById(R.id.valorIMC);//
 
         Intent intent = getIntent(); // recuperamos a intenção que veio atividade anterior
         Bundle bundle = intent.getExtras();//
-        bundle.getString("imc");// recuperamos o valor do imc que foi passado na intenção
 
-        tvResultado.setText(bundle.getString("imc"));// setamos o valor do imc no TextView
+        Float peso, altura, imc;
+        String nome;
+        peso = bundle.getFloat("peso");
+        altura = bundle.getFloat("altura");
+        nome = bundle.getString("nome");
+        imc = bundle.getFloat("imc");
+        imc = peso / (altura * altura);
 
-        double res = Double.parseDouble(tvResultado.getText().toString());// convertemos o valor do imc para double
+        tvAltura.setText(altura.toString());
+        tvPeso.setText(peso.toString());
+        tvResultado.setText(imc.toString());
+        tvNome.setText(nome.toString());
 
-        imageViewResultado=findViewById(R.id.ImageViewResultado);// associamos a variável local ao view na tela
-        if(res < 18.5) {
+        if (imc<18.5) {
+            Toast.makeText(this, "Abaixo do peso", Toast.LENGTH_SHORT).show();
             imageViewResultado.setImageResource(R.drawable.abaixopeso);
-        }
-        if(res >= 18.5 && res <= 24.9) {
+            tvResultado.setText("Abaixo do peso");
+        } else if (imc>18.5 && imc<24.9){
+            Toast.makeText(this, "Peso normal", Toast.LENGTH_SHORT).show();
             imageViewResultado.setImageResource(R.drawable.normal);
-        }
-        if(res >= 25 && res <= 29.9) {
+            tvResultado.setText("Peso normal");
+        }else if (imc>24.9 && imc<29.9){
+            Toast.makeText(this, "Sobrepeso", Toast.LENGTH_SHORT).show();
             imageViewResultado.setImageResource(R.drawable.sobrepeso);
-        }
-        if(res >= 30 && res <= 34.9) {
+            tvResultado.setText("Sobrepeso");
+        }else if (imc>30 && imc<34.9){
+            Toast.makeText(this, "Obesidade grau 1", Toast.LENGTH_SHORT).show();
             imageViewResultado.setImageResource(R.drawable.obesidade1);
-        }
-        if(res >= 35 && res <= 39.9) {
+            tvResultado.setText("Obesidade grau 1");
+        } else if (imc>35 && imc<39.9){
+            Toast.makeText(this, "Obesidade grau 2", Toast.LENGTH_SHORT).show();
             imageViewResultado.setImageResource(R.drawable.obesidade2);
-        }
-        if(res >= 40) {
+            tvResultado.setText("Obesidade grau 2");
+        }else if (imc>40){
+            Toast.makeText(this, "Obesidade grau 3", Toast.LENGTH_SHORT).show();
             imageViewResultado.setImageResource(R.drawable.obesidade3);
+            tvResultado.setText("Obesidade grau 3");
         }
+
     }
 }
