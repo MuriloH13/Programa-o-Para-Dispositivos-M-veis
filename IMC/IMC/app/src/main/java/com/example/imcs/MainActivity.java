@@ -13,26 +13,27 @@ import com.example.imcs.R;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText edPeso, edAltura;
+    private EditText edPeso, edAltura, edNome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         edPeso = findViewById(R.id.edPeso);
         edAltura = findViewById(R.id.edAltura);
+        edNome = findViewById(R.id.edName);
     }
 
     public void calcularIMC(View view){
-        double peso = Double.parseDouble(edPeso.getText().toString());
-        double altura = Double.parseDouble(edAltura.getText().toString());
-        DecimalFormat df = new DecimalFormat("##.##");
-        double imc = peso / (altura * altura);
-        String resultado = df.format(imc);
 
-        Toast.makeText(this, "IMC: " + resultado, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, IMCResultado.class);
 
-        Intent intent = new Intent(getApplicationContext(), IMCResultado.class);
-        intent.putExtra("imc", resultado);
+        Bundle bundle = new Bundle();
+
+        bundle.putFloat("peso", Float.parseFloat(edPeso.getText().toString()));
+        bundle.putFloat("altura", Float.parseFloat(edAltura.getText().toString()));
+        bundle.putString("nome", (edNome.getText().toString()));
+        intent.putExtras(bundle);
+
         startActivity(intent);
     }
 }
