@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] nomes = new String[]{ "Pato", "Cachorro", "Morcego", "Camelo", "Preguiça", "Girafa" };
+    String[] nomes = new String[]{ "XJ6(2023)", "kawasaki ninja h2r(2024)", "NXR 160 Bros ESDD(2024)", "FAZER FZ25 ABS", "XT 660R(2014)", "CB600F" };
     ListView lv;
     @Override
 
